@@ -32,7 +32,7 @@ public class TestService {
         System.out.println("Latin Species: " + latinSpecies);
 
         // Requête sur Person
-        List<Person> personsByName = personRepository.findByLastNameOrFirstName("Dupont", "Jean");
+        List<Person> personsByName = personRepository.findByLastnameOrFirstname("Dupont", "Jean");
         System.out.println("Persons by Name: " + personsByName);
 
         List<Person> personsByAge = personRepository.findByAgeGreaterThanEqual(30);

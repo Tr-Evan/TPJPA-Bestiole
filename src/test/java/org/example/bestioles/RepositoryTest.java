@@ -3,6 +3,7 @@ package org.example.bestioles;
 import org.example.bestioles.model.Animal;
 import org.example.bestioles.model.Person;
 import org.example.bestioles.model.Species;
+import org.junit.jupiter.api.Assertions;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.annotations.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class RepositoryTest {
 
     @Test
     public void testQueries() {
+
+            // TP4
         // Requête sur Species
         Species species = speciesRepository.findFirstByCommonName("Chien");
         System.out.println("First Species: " + species);
@@ -47,5 +50,20 @@ public class RepositoryTest {
 
         List<Animal> animalsByColor = animalRepository.findByColorIn(List.of("Marron", "Blanc"));
         System.out.println("Animals by Color: " + animalsByColor);
+
     }
+
+            // TP5
+        @Test
+        void testFindAllOrderedByCommonName() {
+            List<Species> species = speciesRepository.findAllOrderedByCommonName();
+            Assertions.assertFalse(species.isEmpty());
+        }
+
+        @Test
+        void testCountBySex() {
+            long maleCount = animalRepository.countBySex("Male");
+            Assertions.assertTrue(maleCount >= 0);
+        }
+
 }
